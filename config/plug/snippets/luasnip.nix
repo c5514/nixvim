@@ -16,7 +16,7 @@
       }
     ];
     fromLua = [
-      { paths = "config/plug/snippets/snippets"; }
+      { paths = ./snippets; }
     ];
   };
   keymaps = [
