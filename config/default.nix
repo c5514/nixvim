@@ -47,6 +47,7 @@
     #./plug/ui/precognition.nix
     ./plug/ui/smart-splits.nix
     ./plug/ui/telescope.nix
+    ./plug/ui/todo-comments.nix
     ./plug/ui/yazi.nix
 
     ./plug/utils/auto-session.nix
