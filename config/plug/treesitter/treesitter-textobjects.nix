@@ -18,25 +18,25 @@
         "at" = "@comment.outer";
       };
     };
-    move = {
-      enable = true;
-      gotoNextStart = {
-        "]m" = "@function.outer";
-        "]]" = "@class.outer";
-      };
-      gotoNextEnd = {
-        "]M" = "@function.outer";
-        "][" = "@class.outer";
-      };
-      gotoPreviousStart = {
-        "[m" = "@function.outer";
-        "[[" = "@class.outer";
-      };
-      gotoPreviousEnd = {
-        "[M" = "@function.outer";
-        "[]" = "@class.outer";
-      };
-    };
+    # move = {
+    #   enable = true;
+    #   gotoNextStart = {
+    #     "]m" = "@function.outer";
+    #     "]]" = "@class.outer";
+    #   };
+    #   gotoNextEnd = {
+    #     "]M" = "@function.outer";
+    #     "][" = "@class.outer";
+    #   };
+    #   gotoPreviousStart = {
+    #     "[m" = "@function.outer";
+    #     "[[" = "@class.outer";
+    #   };
+    #   gotoPreviousEnd = {
+    #     "[M" = "@function.outer";
+    #     "[]" = "@class.outer";
+    #   };
+    # };
     swap = {
       enable = true;
       swapNext = {
