@@ -76,6 +76,11 @@ ls.add_snippets("tex", {
 		{ condition = tex.in_mathzone }
 	),
 	s(
+		{ trig = ";h", wordTrig = false, snippetType = "autosnippet", priority = 10 },
+		t("\\hbar"),
+		{ condition = tex.in_mathzone }
+	),
+	s(
 		{ trig = ";i", wordTrig = false, snippetType = "autosnippet", priority = 10 },
 		t("\\iota"),
 		{ condtion = tex.in_mathzone }
