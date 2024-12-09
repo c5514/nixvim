@@ -1,7 +1,7 @@
 { config, ... }:
-let
-  colors = import ../../colors/${config.theme}.nix { };
-in
+# let
+#   colors = import ../../colors/${config.theme}.nix { };
+# in
 {
   plugins.lualine = {
     enable = true;
@@ -46,10 +46,10 @@ in
           {
             __unkeyed = "mode";
             fmt = "string.lower";
-            color = {
-              fg = colors.base04;
-              bg = "nil";
-            };
+            # color = {
+            #   fg = "#c8ccd4";
+            #   bg = "nil";
+            # };
             separator.left = "";
             separator.right = "";
           }
@@ -59,7 +59,8 @@ in
             __unkeyed = "branch";
             icon.__unkeyed = "";
             color = {
-              fg = colors.base04;
+              # fg = colors.base04;
+              fg = "#c678dd";
               bg = "nil";
             };
             separator.left = "";
@@ -81,7 +82,7 @@ in
               hint = "󰝶 ";
             };
             color = {
-              fg = colors.base08;
+              fg = "#de5d68";
               bg = "nil";
             };
             separator.left = "";
@@ -100,11 +101,11 @@ in
             __unkeyed = "filename";
             symbols = {
               modified = "";
-              readonly = "👁️";
+              readonly = "";
               unnamed = "";
             };
             color = {
-              fg = colors.base05;
+              fg = "#e5c07b";
               bg = "nil";
             };
             separator.left = "";
@@ -115,7 +116,7 @@ in
           {
             __unkeyed = "location";
             color = {
-              fg = colors.base0B;
+              fg = "#8fb573";
               bg = "nil";
             };
             separator.left = "";

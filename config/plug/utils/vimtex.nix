@@ -11,7 +11,7 @@
   plugins.vimtex = {
     enable = true;
     # xdotoolPackage = pkgs.xdotool;
-    # texlivePackage = pkgs.texliveFull;
+    texlivePackage = pkgs.texliveFull;
     settings = {
       view_method = "zathura_simple";
       quickfix_enabled = true;
