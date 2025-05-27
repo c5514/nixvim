@@ -17,6 +17,7 @@ in
         rev = "refs/tags/${version}";
         hash = "sha256-VD3jI48H4n60aHzs8tf0FaZ+TRecjik78i71Yv+xVyY=";
       };
+      buildInputs = [ pkgs.vimPlugins.plenary-nvim];
     })
   ];
 

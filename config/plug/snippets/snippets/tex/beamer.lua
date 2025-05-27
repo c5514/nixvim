@@ -15,20 +15,25 @@ tex.in_beamer = function()
 	return vim.b.vimtex["documentclass"] == "beamer"
 end
 
-ls.add_snippets('tex', {
-	s({ trig = "tbfr", dscr = "Title Beamer frame", snippetType = "autosnippet" },
-		fmta([[
+ls.add_snippets("tex", {
+	s(
+		{ trig = "tbfr", dscr = "Title Beamer frame", snippetType = "autosnippet" },
+		fmta(
+			[[
 % ──────────────────────────────── <> ──────────────────────────────
 \begin{frame}\frametitle{<>}
 	<>
 \end{frame}
 
       ]],
-			{ i(1, 'Frame title'), rep(1), i(2) }
-		), { condition = tex.in_beamer }
+			{ i(1, "Frame title"), rep(1), i(2) }
+		),
+		{ condition = tex.in_beamer }
 	),
-	s({ trig = "bfr", dscr = "Beamer frame", snippetType = "autosnippet" },
-		fmta([[
+	s(
+		{ trig = "bfr", dscr = "Beamer frame", snippetType = "autosnippet" },
+		fmta(
+			[[
 % ──────────────────────────────────────────────────────────────────────
 \begin{frame}
 	<>
@@ -36,6 +41,7 @@ ls.add_snippets('tex', {
 
       ]],
 			{ i(1) }
-		), { condition = tex.in_beamer }
+		),
+		{ condition = tex.in_beamer }
 	),
 })

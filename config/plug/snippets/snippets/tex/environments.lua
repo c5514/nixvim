@@ -15,16 +15,16 @@ local util = require("luasnip.util.util")
 local node_util = require("luasnip.nodes.util")
 local tex = {}
 tex.in_mathzone = function()
-	return vim.fn['vimtex#syntax#in_mathzone']() == 1
+	return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 tex.in_text = function()
-	return not vim.fn['vimtex#syntax#in_mathzone']() == 1
+	return not vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 -- personal util
 local function isempty(s) --util
-	return s == nil or s == ''
+	return s == nil or s == ""
 end
 
 -- label util
@@ -35,13 +35,25 @@ local generate_label = function(args, parent, _, user_arg1, user_arg2)
 		delims = { "[", "]" }
 	end
 	if isempty(user_arg1) then -- creates a general label
-		return sn(nil, fmta([[
+		return sn(
+			nil,
+			fmta(
+				[[
         \label{<>}
-        ]], { i(1) }))
+        ]],
+				{ i(1) }
+			)
+		)
 	else -- creates a specialized label
-		return sn(nil, fmta([[
+		return sn(
+			nil,
+			fmta(
+				[[
         <><>:<><>
-        ]], { t(delims[1]), t(user_arg1), i(1), t(delims[2]) }))
+        ]],
+				{ t(delims[1]), t(user_arg1), i(1), t(delims[2]) }
+			)
+		)
 	end
 end
 local rec_ls
@@ -51,7 +63,7 @@ rec_ls = function()
 			t({ "" }),
 			sn(nil, { t({ "", "\t\\item " }), i(1), d(2, rec_ls, {}) }),
 		}),
-	});
+	})
 end
 
 local function find_dynamic_node(node)
@@ -71,10 +83,7 @@ function _G.dynamic_node_external_update(func_indx)
 	local current_node_key = current_node.key
 
 	local insert_pre_call = vim.fn.mode() == "i"
-	local cursor_pos_end_relative = util.pos_sub(
-		util.get_cursor_0ind(),
-		current_node.mark:get_endpoint(1)
-	)
+	local cursor_pos_end_relative = util.pos_sub(util.get_cursor_0ind(), current_node.mark:get_endpoint(1))
 
 	node_util.leave_nodes_between(dynamic_node.snip, current_node)
 
@@ -86,20 +95,15 @@ function _G.dynamic_node_external_update(func_indx)
 	dynamic_node:update()
 
 	local target_node = dynamic_node:find_node(function(test_node)
-		return (test_node.external_update_id == external_update_id) or
-			(current_node_key ~= nil and test_node.key == current_node_key)
+		return (test_node.external_update_id == external_update_id)
+			or (current_node_key ~= nil and test_node.key == current_node_key)
 	end)
 
 	if target_node then
 		node_util.enter_nodes_between(dynamic_node, target_node)
 
 		if insert_pre_call then
-			util.set_cursor_0ind(
-				util.pos_add(
-					target_node.mark:get_endpoint(1),
-					cursor_pos_end_relative
-				)
-			)
+			util.set_cursor_0ind(util.pos_add(target_node.mark:get_endpoint(1), cursor_pos_end_relative))
 		else
 			node_util.select_node(target_node)
 		end
@@ -124,13 +128,13 @@ local tab = function(args, snip)
 		table.insert(nodes, r(ins_indx, tostring(j) .. "x1", i(1)))
 		ins_indx = ins_indx + 1
 		for k = 2, cols do
-			table.insert(nodes, t " & ")
+			table.insert(nodes, t(" & "))
 			table.insert(nodes, r(ins_indx, tostring(j) .. "x" .. tostring(k), i(1)))
 			ins_indx = ins_indx + 1
 		end
-		table.insert(nodes, t { "\\\\", "" })
+		table.insert(nodes, t({ "\\\\", "" }))
 	end
-	nodes[#nodes] = t ""
+	nodes[#nodes] = t("")
 	return sn(nil, nodes)
 end
 -- local table_node
@@ -159,10 +163,9 @@ end
 -- 	});
 -- end
 
-
-
-ls.add_snippets('tex', {
-	s({ trig = "env", dscr = "Begin environment" },
+ls.add_snippets("tex", {
+	s(
+		{ trig = "env", dscr = "Begin environment" },
 		fmta(
 			[[
         \begin{<>}
@@ -170,24 +173,30 @@ ls.add_snippets('tex', {
         \end{<>}
       ]],
 			{
-				i(1, 'environment'),
+				i(1, "environment"),
 				i(2),
 				rep(1),
 			}
-		), { condition = line_begin }
+		),
+		{ condition = line_begin }
 	),
 	s({ trig = "item", dscr = "Itemize environment" }, {
-		t({ "\\begin{itemize}",
-			"\t\\item " }), i(1), d(2, rec_ls, {}),
-		t({ "", "\\end{itemize}" }), i(0)
+		t({ "\\begin{itemize}", "\t\\item " }),
+		i(1),
+		d(2, rec_ls, {}),
+		t({ "", "\\end{itemize}" }),
+		i(0),
 	}, { condition = line_begin }),
 	-- s({ trig = "itm", dscr = "Add item" }, t("\\item ")),
 	s({ trig = "enum", dscr = "Enumerate environment" }, {
-		t({ "\\begin{enumerate}",
-			"\t\\item " }), i(1), d(2, rec_ls, {}),
-		t({ "", "\\end{enumerate}" }), i(0)
+		t({ "\\begin{enumerate}", "\t\\item " }),
+		i(1),
+		d(2, rec_ls, {}),
+		t({ "", "\\end{enumerate}" }),
+		i(0),
 	}, { condition = line_begin }),
-	s({ trig = "cent", dscr = "Center environment" },
+	s(
+		{ trig = "cent", dscr = "Center environment" },
 		fmta(
 			[[
         \begin{center}
@@ -195,8 +204,11 @@ ls.add_snippets('tex', {
         \end{center}
       ]],
 			{ i(1) }
-		), { condition = line_begin }),
-	s({ trig = "fig", dscr = "Figure environment" },
+		),
+		{ condition = line_begin }
+	),
+	s(
+		{ trig = "fig", dscr = "Figure environment" },
 		fmta(
 			[[
 % ──────────────────────────────────────────────────────────────────────
@@ -210,13 +222,15 @@ ls.add_snippets('tex', {
 
       ]],
 			{
-				i(1, '!htpb'),
-				i(2, '0.8'),
-				i(3, 'name'),
-				i(4, 'caption'),
-				i(5, 'label')
+				i(1, "!htpb"),
+				i(2, "0.8"),
+				i(3, "name"),
+				i(4, "caption"),
+				i(5, "label"),
 			}
-		), { condition = line_begin }),
+		),
+		{ condition = line_begin }
+	),
 	-- s("tab", {
 	-- 	t "\\begin{tabular}{",
 	-- 	i(1, "0"),
@@ -225,40 +239,65 @@ ls.add_snippets('tex', {
 	-- 	d(3, rec_table, { 1 }),
 	-- 	t { "", "\\end{tabular}" }
 	-- }),
-	s("tab", fmt([[
+	s(
+		"tab",
+		fmt(
+			[[
 		\begin{{tabular}}{{{}}}
 		{}
 		\end{{tabular}}
-	]], { i(1, "c"), d(2, tab, { 1 }, {
-		user_args = {
-			function(snip) snip.rows = snip.rows + 1 end,
-			function(snip) snip.rows = math.max(snip.rows - 1, 1) end
-		}
-	}) }), { condition = line_begin }),
-	s({ trig = "sec", dscr = "Display '\\section{}'" },
-		fmta([[\section{<>}<>
-		<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "sec" } }) }), i(0) }), { condition = line_begin }),
-	s({ trig = "ssec", dscr = "Display '\\subsection{}'" },
-		fmta([[\subsection{<>}<>
-		<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "ssec" } }) }), i(0) }),
-		{ condition = line_begin }),
-	s({ trig = "sssec", dscr = "Display '\\subsubsection{}'" },
-		fmta([[\subsubsection{<>}<>
-		<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "sssec" } }) }), i(0) }),
-		{ condition = line_begin }),
-	s({ trig = "sec*", dscr = "Display '\\section**{}'" },
-		fmta([[\section*{<>}]], i(1)), { condition = line_begin }),
-	s({ trig = "ssec*", dscr = "Display '\\subsection**{}'" },
-		fmta([[\subsection*{<>}]], i(1)), { condition = line_begin }),
-	s({ trig = "sssec*", dscr = "Display '\\subsubsection**{}'" },
-		fmta([[\subsubsection*{<>}]], i(1)), { condition = line_begin }),
+	]],
+			{
+				i(1, "c"),
+				d(2, tab, { 1 }, {
+					user_args = {
+						function(snip)
+							snip.rows = snip.rows + 1
+						end,
+						function(snip)
+							snip.rows = math.max(snip.rows - 1, 1)
+						end,
+					},
+				}),
+			}
+		),
+		{ condition = line_begin }
+	),
+	s(
+		{ trig = "sec", dscr = "Display '\\section{}'" },
+		fmta([[\section{<>}<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "sec" } }) }) }),
+		{ condition = line_begin }
+	),
+	s(
+		{ trig = "ssec", dscr = "Display '\\subsection{}'" },
+		fmta([[\subsection{<>}<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "ssec" } }) }) }),
+		{ condition = line_begin }
+	),
+	s(
+		{ trig = "sssec", dscr = "Display '\\subsubsection{}'" },
+		fmta([[\subsubsection{<>}<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "sssec" } }) }) }),
+		{ condition = line_begin }
+	),
+	s({ trig = "sec*", dscr = "Display '\\section**{}'" }, fmta([[\section*{<>}]], i(1)), { condition = line_begin }),
+	s(
+		{ trig = "ssec*", dscr = "Display '\\subsection**{}'" },
+		fmta([[\subsection*{<>}]], i(1)),
+		{ condition = line_begin }
+	),
+	s(
+		{ trig = "sssec*", dscr = "Display '\\subsubsection**{}'" },
+		fmta([[\subsubsection*{<>}]], i(1)),
+		{ condition = line_begin }
+	),
 
-	s({ trig = "part", dscr = "Display '\\part{}'" },
-		fmta([[\part{<>}<>
-		<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "part" } }) }), i(0) }),
-		{ condition = line_begin }),
-	s({ trig = "chap", dscr = "Display '\\chapter{}'" },
-		fmta([[\chapter{<>}<>
-		<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "part" } }) }), i(0) }),
-		{ condition = line_begin }),
+	s(
+		{ trig = "part", dscr = "Display '\\part{}'" },
+		fmta([[\part{<>}<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "part" } }) }) }),
+		{ condition = line_begin }
+	),
+	s(
+		{ trig = "chap", dscr = "Display '\\chapter{}'" },
+		fmta([[\chapter{<>}<>]], { i(1), c(2, { t(""), d(1, generate_label, {}, { user_args = { "part" } }) }) }),
+		{ condition = line_begin }
+	),
 })

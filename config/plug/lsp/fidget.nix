@@ -1,6 +1,7 @@
 {
   plugins.fidget = {
     enable = false;
+    settings = {
     logger = {
       level = "warn"; # “off”, “error”, “warn”, “info”, “debug”, “trace”
       floatPrecision = 1.0e-2; # Limit the number of decimals displayed for floats
@@ -94,6 +95,7 @@
           # Highlight group used for group separator
           "Comment";
       };
+    };
     };
   };
 }

@@ -229,8 +229,9 @@ ls.add_snippets("tex", {
 	s(
 		{ trig = "to", wordTrig = false, snippetType = "autosnippet", priority = 10 },
 		c(1, {
-			t("\\longmapsto"),
+			t("\\to"),
 			t("\\mapsto"),
+			t("\\longmapsto"),
 		}),
 		{ condition = tex.in_mathzone }
 	),
@@ -302,6 +303,8 @@ ls.add_snippets("tex", {
 		}),
 		{ condition = tex.in_mathzone }
 	),
+	s({ trig = "surj", wordTrig = false, snippetType = "autosnippet" }, t("\\surjto"), { condition = tex.in_mathzone }),
+	s({ trig = "inj", wordTrig = false, snippetType = "autosnippet" }, t("\\injto"), { condition = tex.in_mathzone }),
 	s({ trig = "neq", wordTrig = false, snippetType = "autosnippet" }, t("\\neq"), { condition = tex.in_mathzone }),
 	s({ trig = "geq", wordTrig = false, snippetType = "autosnippet" }, t("\\geq"), { condition = tex.in_mathzone }),
 	s({ trig = "leq", wordTrig = false, snippetType = "autosnippet" }, t("\\leq"), { condition = tex.in_mathzone }),
@@ -317,7 +320,7 @@ ls.add_snippets("tex", {
 	s({ trig = "UU", wordTrig = false, snippetType = "autosnippet" }, t("\\bigcup"), { condition = tex.in_mathzone }),
 	s({ trig = "<<", wordTrig = false, snippetType = "autosnippet" }, t("\\ll"), { condition = tex.in_mathzone }),
 	s({ trig = ">>", wordTrig = false, snippetType = "autosnippet" }, t("\\gg"), { condition = tex.in_mathzone }),
-	s({ trig = "equiv", wordTrig = false, snippetType = "autosnippet" }, t("\\equiv"), { condition = tex.in_mathzone }),
+	s({ trig = "eqv", wordTrig = false, snippetType = "autosnippet" }, t("\\equiv"), { condition = tex.in_mathzone }),
 	s(
 		{ trig = "sq", wordTrig = false, snippetType = "autosnippet" },
 		fmta([[\sqrt{<>}]], { i(1) }),
@@ -343,11 +346,6 @@ ls.add_snippets("tex", {
 	s(
 		{ trig = "conj", wordTrig = false, snippetType = "autosnippet" },
 		fmta([[\overline{<>} ]], { i(1) }),
-		{ condition = tex.in_mathzone }
-	),
-	s(
-		{ trig = "adj", wordTrig = false, snippetType = "autosnippet" },
-		fmta([[{<>}^\dagger ]], { i(1) }),
 		{ condition = tex.in_mathzone }
 	),
 	s({ trig = "dag", wordTrig = false, snippetType = "autosnippet" }, t("^\\dagger"), { condition = tex.in_mathzone }),
@@ -468,8 +466,13 @@ ls.add_snippets("tex", {
 		{ condition = tex.in_mathzone }
 	),
 	s(
+		{ trig = "mean", dscr = "Mean QM", snippetType = "autosnippet" },
+		fmta([[\mean{<>}]], { i(1, " ") }),
+		{ condition = tex.in_mathzone }
+	),
+	s(
 		{ trig = "norm", dscr = "Norm", snippetType = "autosnippet" },
-		fmta([[\left\lVert <>\right\rVert]], { i(1, " ") }),
+		fmta([[\norm{<>}]], { i(1, " ") }),
 		{ condition = tex.in_mathzone }
 	),
 	s(
@@ -479,8 +482,15 @@ ls.add_snippets("tex", {
 	),
 	s(
 		{ trig = "floor", wordTrig = false, dscr = "Floor function", snippetType = "autosnippet" },
-		fmta([[\left\lfloor<>\right\rfloor]], { i(1, " ") }),
+		fmta([[\floor{<>}]], { i(1, " ") }),
 		{ condition = tex.in_mathzone }
+	),
+	s(
+		{ trig = "bko", dscr = "Operator braket" },
+		fmta([[\bra{<>}\hat{<>}\ket{<>}]], { i(1, " "), i(2, " "), i(3, " ") }),
+		{
+			condition = tex.in_mathzone,
+		}
 	),
 	s({ trig = "bk", dscr = "Braket notation" }, fmta([[\braket{<>}{<>}]], { i(1, " "), i(2, " ") }), {
 		condition = tex.in_mathzone,
@@ -491,12 +501,12 @@ ls.add_snippets("tex", {
 		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "bra", wordTrig = false, dscr = "bra notation" },
+		{ trig = "bra", wordTrig = false, snippetType = "autosnippet" },
 		fmta([[\bra{<>}]], { i(1, " ") }),
 		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "ket", wordTrig = false, dscr = "ket notation" },
+		{ trig = "ket", wordTrig = false, snippetType = "autosnippet" },
 		fmta([[\ket{<>}]], { i(1, " ") }),
 		{ condition = tex.in_mathzone }
 	),
@@ -558,6 +568,16 @@ ls.add_snippets("tex", {
 	s(
 		{ trig = "acsc", dscr = "Arccsc function", snippetType = "autosnippet" },
 		{ t("\\arccsc") },
+		{ condition = tex.in_mathzone }
+	),
+	s(
+		{ trig = "cua", dscr = "Draw square", snippetType = "autosnippet" },
+		{ t("\\square") },
+		{ condition = tex.in_mathzone }
+	),
+	s(
+		{ trig = "tri", dscr = "Draw triangle", snippetType = "autosnippet" },
+		{ t("\\triangle") },
 		{ condition = tex.in_mathzone }
 	),
 })

@@ -301,6 +301,76 @@
         argstyle = "bold";
         concealchar = "↦";
       }
+      {
+        name = "surjto";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "↠";
+      }
+      {
+        name = "injto";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "↪";
+      }
+      {
+        name = "mi";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "i";
+      }
+      {
+        name = "Q";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "ℚ";
+      }
+      {
+        name = "C";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "ℂ";
+      }
+      {
+        name = "N";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "ℕ";
+      }
+      {
+        name = "Z";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "ℤ";
+      }
+      {
+        name = "R";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "ℝ";
+      }
+      {
+        name = "dg";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "°";
+      }
+      {
+        name = "dang";
+        mathmode = 1;
+        conceal = 1;
+        argstyle = "bold";
+        concealchar = "∡";
+      }
     ];
     vimtex_syntax_custom_cmds_with_concealed_delims = [
       {
@@ -314,6 +384,30 @@
         mathmode = 1;
         cchar_open = "⟨";
         cchar_close = "|";
+      }
+      {
+        name = "abs";
+        mathmode = 1;
+        cchar_open = "|";
+        cchar_close = "|";
+      }
+      {
+        name = "norm";
+        mathmode = 1;
+        cchar_open = "‖";
+        cchar_close = "‖";
+      }
+      {
+        name = "floor";
+        mathmode = 1;
+        cchar_open = "⌊";
+        cchar_close = "⌋";
+      }
+      {
+        name = "mean";
+        mathmode = 1;
+        cchar_open = "⟨";
+        cchar_close = "⟩";
       }
       {
         name = "braket";

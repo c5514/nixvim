@@ -9,9 +9,11 @@ local c = ls.choice_node
 local f = ls.function_node
 local rep = require("luasnip.extras").rep
 
-ls.add_snippets('tex', {
-	s({ trig = "lnotes", dscr = "Lecture Notes Template" },
-		fmta([[
+ls.add_snippets("tex", {
+	s(
+		{ trig = "lnotes", dscr = "Lecture Notes Template" },
+		fmta(
+			[[
         \documentclass{article}
         \usepackage{babel}
         \usepackage{derivative}
@@ -212,7 +214,7 @@ ls.add_snippets('tex', {
 				i(5),
 				i(6),
 				i(7),
-				i(8)
+				i(8),
 			}
 		)
 	),
@@ -236,7 +238,7 @@ ls.add_snippets('tex', {
 				i(1, "Title"),
 				i(2, "Profesor/course"),
 				i(3, "Author"),
-				i(4, "File")
+				i(4, "File"),
 			}
 		)
 	),
@@ -321,7 +323,7 @@ ls.add_snippets('tex', {
 			{
 				i(1),
 				i(2),
-				i(3)
+				i(3),
 			}
 		)
 	),
@@ -365,7 +367,7 @@ ls.add_snippets('tex', {
 			{
 				i(1),
 				i(2),
-				i(3)
+				i(3),
 			}
 		)
 	),
