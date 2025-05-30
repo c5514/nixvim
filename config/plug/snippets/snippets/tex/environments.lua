@@ -243,9 +243,11 @@ ls.add_snippets("tex", {
 		"tab",
 		fmt(
 			[[
-		\begin{{tabular}}{{{}}}
-		{}
-		\end{{tabular}}
+\begin{{table}}[!httb]
+\begin{{tabular}}{{{}}}
+  {}
+\end{{tabular}}
+\end{{table}}
 	]],
 			{
 				i(1, "c"),
@@ -259,6 +261,51 @@ ls.add_snippets("tex", {
 						end,
 					},
 				}),
+			}
+		),
+		{ condition = line_begin }
+	),
+	s(
+		"tab*",
+		fmt(
+			[[
+\begin{{tabular}}{{{}}}
+	{}
+\end{{tabular}}
+]],
+			{
+				i(1, "c"),
+				d(2, tab, { 1 }, {
+					user_args = {
+						function(snip)
+							snip.rows = snip.rows + 1
+						end,
+						function(snip)
+							snip.rows = math.max(snip.rows - 1, 1)
+						end,
+					},
+				}),
+			}
+		),
+		{ condition = line_begin }
+	),
+	s(
+		"mini",
+		fmta(
+			[[
+\begin{minipage}[t]{<>\textwidth}
+	 <>
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{<>\textwidth}
+   <>
+\end{minipage}
+]],
+			{
+				i(1, "0.5"),
+				i(2),
+				rep(1),
+				i(3),
 			}
 		),
 		{ condition = line_begin }
