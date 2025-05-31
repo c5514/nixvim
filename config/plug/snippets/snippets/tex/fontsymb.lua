@@ -16,7 +16,7 @@ tex.in_mathzone = function()
 	return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 tex.in_text = function()
-	return not vim.fn["vimtex#syntax#in_mathzone"]() == 1
+	return vim.fn["vimtex#syntax#in_mathzone"]() == 0
 end
 
 ls.add_snippets("tex", {
@@ -427,7 +427,6 @@ ls.add_snippets("tex", {
 		dscr = "Blackboard bold math font",
 		snippetType = "autosnippet",
 	}, { l("\\mathbb{" .. l.POSTFIX_MATCH .. "}") }, { condition = tex.in_mathzone }),
-	-- s({ trig = "bb", wordTrig = false, dscr = "Blackboard bold math font" }, fmta([[\mathbb{<>}]], { i(1) })),
 	s({ trig = "sf", wordTrig = false, dscr = "Sans serif math font" }, fmta([[\mathsf{<>}]], { i(1) })),
 	s({ trig = "rm", wordTrig = false, dscr = "Roman math font" }, fmta([[\mathrm{<>}]], { i(1) })),
 	s(

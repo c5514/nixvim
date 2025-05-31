@@ -13,7 +13,7 @@ tex.in_mathzone = function()
 	return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 tex.in_text = function()
-	return not vim.fn["vimtex#syntax#in_mathzone"]() == 1
+	return vim.fn["vimtex#syntax#in_mathzone"]() == 0
 end
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
 
@@ -92,43 +92,37 @@ ls.add_snippets("tex", {
 		{ condition = line_begin }
 	),
 	s(
-		{ trig = "pmat", dscr = "Matrix (...)" },
-		fmta(
-			[[
+		{ trig = "mat", wordTrig = false, dscr = "Matrices", snippetType = "autosnippet" },
+		c(1, {
+			fmta(
+				[[
         \begin{pmatrix}
            <>
         \end{pmatrix}
       ]],
-			{ i(1) }
-		),
-		{ condition = tex.in_mathzone }
-	),
-	s(
-		{ trig = "bmat", dscr = "Matrix [...]" },
-		fmta(
-			[[
+				{ i(1) }
+			),
+			fmta(
+				[[
         \begin{bmatrix}
            <>
         \end{bmatrix}
       ]],
-			{ i(1) }
-		),
-		{ condition = tex.in_mathzone }
-	),
-	s(
-		{ trig = "Bmat", dscr = "Matrix {...}" },
-		fmta(
-			[[
+				{ i(1) }
+			),
+			fmta(
+				[[
         \begin{Bmatrix}
            <>
         \end{Bmatrix}
       ]],
-			{ i(1) }
-		),
+				{ i(1) }
+			),
+		}),
 		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "det", dscr = "Determinant matrix" },
+		{ trig = "det", dscr = "Determinant matrix", snippetType = "autosnippet" },
 		fmta(
 			[[
         \begin{vmatrix}
@@ -160,7 +154,7 @@ ls.add_snippets("tex", {
 	-- s({ trig = "$", snippetType = "autosnippet" }, fmta([[$<>$]], { i(1) }), { condition = tex.in_mathzone }),
 
 	s(
-		{ trig = "lim", dscr = "Limits" },
+		{ trig = "lim", dscr = "Limits", snippetType = "autosnippet" },
 		c(1, {
 			fmta(
 				[[
@@ -184,7 +178,7 @@ ls.add_snippets("tex", {
 		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "sum", dscr = "Sum of elements" },
+		{ trig = "sum", dscr = "Sum of elements", snippetType = "autosnippet" },
 		c(1, {
 			fmta(
 				[[
@@ -202,7 +196,7 @@ ls.add_snippets("tex", {
 		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "prod", dscr = "Product of elements" },
+		{ trig = "pro", dscr = "Product of elements", snippetType = "autosnippet" },
 		c(1, {
 			fmta(
 				[[
@@ -212,7 +206,7 @@ ls.add_snippets("tex", {
 			),
 			fmta(
 				[[
-				\prod_{<>\in<>}
+				\prod_{<>\in <>}
 				]],
 				{ i(1, "i"), i(2, "I") }
 			),
@@ -313,7 +307,7 @@ ls.add_snippets("tex", {
 		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "tex", wordTrig = false, dscr = "Text environment", snippetType = "autosnippet" },
+		{ trig = "tt", wordTrig = false, dscr = "Text environment", snippetType = "autosnippet" },
 		fmta([[\text{<>}]], { i(1) }),
 		{ condition = tex.in_mathzone }
 	),
@@ -432,7 +426,7 @@ ls.add_snippets("tex", {
 		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "fun", dscr = "Function" },
+		{ trig = "fun", dscr = "Function", snippetType = "autosnippet" },
 		c(1, {
 			fmta(
 				[[
@@ -449,21 +443,24 @@ ls.add_snippets("tex", {
 			]],
 				{ i(1, "f(x)"), i(2), i(3), i(4), i(5) }
 			),
-		})
+		}),
+		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "ff", wordTrig = false, dscr = "Display '\\frac{}{}}'" },
+		{ trig = "ff", wordTrig = false, dscr = "Display '\\frac{}{}}'", snippetType = "autosnippet" },
 		c(1, {
 			fmta([[\frac{<>}{<>}]], { i(1), i(2) }),
 			fmta([[\left(\frac{<>}{<>}\right)]], { i(1), i(2) }),
-		})
+		}),
+		{ condition = tex.in_mathzone }
 	),
 	s(
-		{ trig = "exp", wordTrig = false, dscr = "Display 'e^{}'" },
+		{ trig = "ee", wordTrig = false, dscr = "Display 'e^{}'", snippetType = "autosnippet" },
 		c(1, {
 			fmta([[e^{<>}]], { i(1) }),
 			fmta([[e^{\left(\frac{<>}{<>}\right)}]], { i(1), i(2) }),
-		})
+		}),
+		{ condition = tex.in_mathzone }
 	),
 	s(
 		{ trig = "case", dscr = "Begin cases env" },

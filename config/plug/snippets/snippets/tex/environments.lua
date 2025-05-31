@@ -18,7 +18,7 @@ tex.in_mathzone = function()
 	return vim.fn["vimtex#syntax#in_mathzone"]() == 1
 end
 tex.in_text = function()
-	return not vim.fn["vimtex#syntax#in_mathzone"]() == 1
+	return vim.fn["vimtex#syntax#in_mathzone"]() == 0
 end
 
 local line_begin = require("luasnip.extras.expand_conditions").line_begin
