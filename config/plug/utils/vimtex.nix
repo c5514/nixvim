@@ -65,6 +65,7 @@
       options = {
         silent = true;
         noremap = false;
+        desc = "next start of env";
       };
     }
     {
@@ -78,6 +79,7 @@
       options = {
         silent = true;
         noremap = false;
+        desc = "next end of env";
       };
     }
     {
@@ -91,6 +93,7 @@
       options = {
         silent = true;
         noremap = false;
+        desc = "prev. start of env";
       };
     }
     {
@@ -104,7 +107,7 @@
       options = {
         silent = true;
         noremap = false;
-        # desc = "dd";
+        desc = "prev. end of env";
       };
     }
     # Change of math mode ]n --> ]m, ]N --> ]M, [n-->[m, [N --> [M
@@ -119,6 +122,7 @@
       options = {
         silent = true;
         noremap = false;
+        desc = "next start of math";
       };
     }
     {
@@ -132,6 +136,7 @@
       options = {
         silent = true;
         noremap = false;
+        desc = "next end of math";
       };
     }
     {
@@ -145,6 +150,7 @@
       options = {
         silent = true;
         noremap = false;
+        desc = "prev. start of math";
       };
     }
     {
@@ -158,6 +164,7 @@
       options = {
         silent = true;
         noremap = false;
+        desc = "prev. end of math";
       };
     }
     # Change of itemize/enumerate environment am --> ai, im --> ii

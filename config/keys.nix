@@ -102,6 +102,32 @@
       };
     }
 
+    {
+      mode = "n";
+      key = "<leader>l";
+      action = "+latex";
+      options = {
+        desc = "+latex";
+      };
+    }
+
+    {
+      mode = "n";
+      key = "<leader>i";
+      action = "+inkscape";
+      options = {
+        desc = "+inkscape";
+      };
+    }
+
+    {
+      mode = "n";
+      key = "<leader>y";
+      action = "+yazi";
+      options = {
+        desc = "+yazi";
+      };
+    }
     # Tabs
     {
       mode = "n";
