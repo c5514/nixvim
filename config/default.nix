@@ -68,6 +68,7 @@
     ./plug/utils/undotree.nix
     ./plug/utils/vimtex.nix
     ./plug/utils/yaml-companion.nix
+    ./plug/utils/templates.nix
   ];
   options = {
     theme = lib.mkOption {
