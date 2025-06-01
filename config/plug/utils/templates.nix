@@ -64,10 +64,10 @@
               if project_name == "" then return end
               
               local project_path = vim.fn.getcwd() .. "/" .. project_name
-              vim.fn.mkdir(project_path, "p")
-              
               local template_path = vim.fn.expand(selection.value.path)
-              os.execute(string.format("cp -r %s* %s/", template_path, project_path))
+              
+              -- Copy the entire template folder and rename it to project name
+              os.execute(string.format("cp -r %s %s && chmod -R u+w %s", template_path, project_path, project_path))
               
               vim.cmd("edit " .. project_path .. "/main.tex")
               vim.cmd("cd " .. project_path)
