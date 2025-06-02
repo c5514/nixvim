@@ -67,21 +67,21 @@ in
         sources = [
           {
             name = "nvim_lsp";
-            priority = 1000;
+            priority = 750;
             option = {
               inherit get_bufnrs;
             };
           }
           {
             name = "nvim_lsp_signature_help";
-            priority = 1000;
+            priority = 750;
             option = {
               inherit get_bufnrs;
             };
           }
           {
             name = "nvim_lsp_document_symbol";
-            priority = 1000;
+            priority = 750;
             option = {
               inherit get_bufnrs;
             };
@@ -95,7 +95,7 @@ in
           }
           {
             name = "luasnip";
-            priority = 750;
+            priority = 1000;
           }
           {
             name = "buffer";
