@@ -2,7 +2,7 @@ _:
 let
   get_bufnrs.__raw = ''
     function()
-      local buf_size_limit = 1024 * 1024 -- 1MB size limit
+      local buf_size_limit = 10 * 1024 -- 1MB size limit
       local bufs = vim.api.nvim_list_bufs()
       local valid_bufs = {}
       for _, buf in ipairs(bufs) do
@@ -21,6 +21,14 @@ in
       autoEnableSources = true;
 
       settings = {
+        performance = {
+          debounce = 100; # Delay before triggering completion
+          throttle = 30; # Limit completion frequency
+          fetching_timeout = 100; # Faster timeout for sources
+          confirm_resolve_timeout = 80;
+          async_budget = 1; # Process completions over multiple frames
+          max_view_entries = 10; # Limit visible completions
+        };
         window = {
           completion.border = "rounded";
           documentation.border = "rounded";
@@ -66,6 +74,10 @@ in
 
         sources = [
           {
+            name = "luasnip";
+            priority = 1000;
+          }
+          {
             name = "nvim_lsp";
             priority = 750;
             option = {
@@ -88,30 +100,27 @@ in
           }
           {
             name = "treesitter";
-            priority = 850;
+            priority = 300;
             option = {
               inherit get_bufnrs;
             };
           }
           {
-            name = "luasnip";
-            priority = 1000;
-          }
-          {
             name = "buffer";
             priority = 500;
+            keywordLength = 4;
             option = {
               inherit get_bufnrs;
             };
           }
           {
             name = "copilot";
-            priority = 400;
-          }
-          {
-            name = "rg";
             priority = 300;
           }
+          # {
+          #   name = "rg";
+          #   priority = 300;
+          # }
           {
             name = "path";
             priority = 300;
@@ -123,15 +132,16 @@ in
           {
             name = "spell";
             priority = 300;
+            keywordLength = 4;
           }
           {
             name = "git";
             priority = 250;
           }
-          {
-            name = "calc";
-            priority = 150;
-          }
+          # {
+          #   name = "calc";
+          #   priority = 150;
+          # }
           {
             name = "emoji";
             priority = 100;
