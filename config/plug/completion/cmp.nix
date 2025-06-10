@@ -113,10 +113,6 @@ in
               inherit get_bufnrs;
             };
           }
-          {
-            name = "copilot";
-            priority = 300;
-          }
           # {
           #   name = "rg";
           #   priority = 300;

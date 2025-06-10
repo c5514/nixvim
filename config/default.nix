@@ -10,8 +10,6 @@
 
     ./plug/completion/blink.nix
     ./plug/completion/cmp.nix
-    ./plug/completion/copilot-cmp.nix
-    # ./plug/completion/codecompanion.nix
     ./plug/completion/schemastore.nix
 
     ./plug/git/gitblame.nix
@@ -50,24 +48,22 @@
     ./plug/ui/todo-comments.nix
     ./plug/ui/yazi.nix
 
-    ./plug/utils/auto-session.nix
+    # ./plug/utils/auto-session.nix
     ./plug/utils/autopairs.nix
     ./plug/utils/colorizer.nix
     ./plug/utils/comment-box.nix
     ./plug/utils/comment.nix
-    ./plug/utils/grapple.nix
     ./plug/utils/illuminate.nix
     ./plug/utils/illustrate.nix
     ./plug/utils/markview.nix
     ./plug/utils/obsidian.nix
     ./plug/utils/spectre.nix
-    ./plug/utils/tmux-navigator.nix
+    # ./plug/utils/tmux-navigator.nix
     ./plug/utils/rainbow-delimiters.nix
     ./plug/utils/trunk.nix
     ./plug/utils/ufo.nix
     ./plug/utils/undotree.nix
     ./plug/utils/vimtex.nix
-    ./plug/utils/yaml-companion.nix
     ./plug/utils/templates.nix
   ];
   options = {
@@ -86,13 +82,6 @@
         "aquarium"
         "gruvbox"
         "oxocarbon"
-      ];
-    };
-    assistant = lib.mkOption {
-      default = "none";
-      type = lib.types.enum [
-        "copilot"
-        "none"
       ];
     };
   };
